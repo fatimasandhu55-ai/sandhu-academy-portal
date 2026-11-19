@@ -1,0 +1,11 @@
+body{margin:0;font-family:Arial;background:#fff5f8}
+nav{background:#6a0dad;color:white;display:flex;justify-content:space-between;padding:15px;align-items:center}
+nav a{color:white;text-decoration:none;margin:0 8px;font-weight:bold}
+.login-btn{background:white;color:#6a0dad!important;padding:8px 15px;border-radius:20px}
+.hero{background:linear-gradient(135deg,#6a0dad,#ff4d8d);color:white;text-align:center;padding:70px 20px}
+.btn{background:white;color:#6a0dad;padding:12px 25px;border-radius:25px;text-decoration:none;font-weight:bold}
+.btn2{border:2px solid white;color:white;padding:10px 25px;border-radius:25px;text-decoration:none;margin-left:10px}
+.cards{display:flex;gap:15px;justify-content:center;padding:30px;flex-wrap:wrap}
+.card{background:white;padding:20px;border-radius:15px;box-shadow:0 4px 15px #ddd;width:220px;text-align:center}
+.page{max-width:700px;margin:30px auto;background:white;padding:30px;border-radius:15px;box-shadow:0 4px 15px #eee}
+footer{background:#333;color:white;text-align:center;padding:15px;margin-top:30px}
