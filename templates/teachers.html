@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding:20px;max-width:1100px;margin:auto">
+<h2 style="text-align:center">👩‍🏫 Hamari Teachers</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+{% for t in teachers %}
+<div style="background:white;border-radius:20px;padding:20px;text-align:center;box-shadow:0 4px 15px #ddd">
+{% if t[4] %}<img src="/static/uploads/{{t[4]}}" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #ff2e88">{% else %}<div style="width:120px;height:120px;border-radius:50%;background:#ffe0ec;display:flex;align-items:center;justify-content:center;font-size:50px;margin:auto">👩‍🏫</div>{% endif %}
+<h3>{{t[1]}}</h3>
+<p style="color:#ff2e88;font-weight:700">{{t[2]}}</p>
+<p>{{t[3]}}</p>
+<p style="font-size:13px;color:#666">{{t[5] if t|length>5 else ''}}</p>
+<a href="https://wa.me/923116402301?text=Mujhe%20{{t[1]}}%20Se%20Parhna%20Hai" style="background:#25D366;color:white;padding:8px 15px;border-radius:10px;text-decoration:none">WhatsApp Karo</a>
+</div>
+{% else %}<p>Abhi koi teacher add nahi hui.</p>{% endfor %}
+</div>
+</div>
+{% endblock %}

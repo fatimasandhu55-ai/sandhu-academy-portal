@@ -1,15 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="hero">
-  <h1>Welcome to Sandhu Academy</h1>
-  <p>Coding • Spoken English • Matric / Inter Subjects</p>
-  <h3>🔥 2 Days FREE Trial - Admission Open!</h3>
-  <a href="/login" class="btn">Book Free Trial</a>
-  <a href="/courses" class="btn2">View Courses</a>
+  <div style="background:rgba(255,255,255,0.2);display:inline-block;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:700">✨ LIVE CLASSES DAILY • GUJRANWALA • ONLINE POORE PAKISTAN</div>
+  <h1 style="font-size:38px;line-height:1.2;margin:18px 0 10px">Sandhu Academy<br><span style="color:#ffde59">Seekho • Bano • Aage Barho 🚀</span></h1>
+  <p style="font-size:17px;opacity:0.95">Matric • English • Coding • AI Prompt - Ghar Beth Ke Seekho<br>2 Din FREE Trial + Orphan Ko Discount</p>
+  <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn" href="/courses">📚 Courses Dekho</a>
+    <a class="btn2" href="https://wa.me/923116402301?text=Admission%20lena%20hai">💬 Admission Lo</a>
+  </div>
+  <!-- Sohail Code Academy jaisa Terminal -->
+  <div class="terminal">
+    <span class="pink">Fatima@Sandhu</span><span class="white">:~$ </span><span id="typeText"></span><span style="animation:blink 1s infinite">|</span><br>
+    <span class="yellow">> Course: Coding + English + Matric</span><br>
+    <span class="white">> Status: </span><span style="color:#4ade80">✅ Admission Open - 2 Din FREE</span>
+  </div>
+  <style>@keyframes blink{50%{opacity:0}}</style>
+  <script>
+    var txt="python seekhna hai? - Yes!"; var i=0;
+    setInterval(()=>{ document.getElementById('typeText').textContent=txt.slice(0,i); i++; if(i>txt.length) i=0; },110);
+  </script>
 </div>
+
+<!-- PFTP jaisa Stats -->
+<div style="max-width:900px;margin:-25px auto 0;position:relative;z-index:2;padding:0 15px"><div class="row">
+  <div class="stat reveal show"><h2 style="margin:0;font-size:30px">500+</h2><p style="margin:5px 0 0">Happy Students</p></div>
+  <div class="stat reveal show"><h2 style="margin:0;font-size:30px">50+</h2><p style="margin:5px 0 0">Courses</p></div>
+  <div class="stat reveal show"><h2 style="margin:0;font-size:30px">8+ Years</h2><p style="margin:5px 0 0">Experience</p></div>
+  <div class="stat reveal show"><h2 style="margin:0;font-size:30px">100%</h2><p style="margin:5px 0 0">Online + Live</p></div>
+</div></div>
+
+<!-- Al-Noor jaisi Cards -->
 <div class="cards">
-  <div class="card"><h3>💻 Coding</h3><p>Python, Web Development</p></div>
-  <div class="card"><h3>🗣️ English</h3><p>Spoken & Written English</p></div>
-  <div class="card"><h3>📚 Matric / Inter</h3><p>All Subjects - Rs.1000 / Subject</p></div>
+  <a class="card reveal" href="/course/Matric"><div style="font-size:40px">📖</div><h3>Matric</h3><p>9th, 10th - Science, Maths, English sab asaan tareeke se. Test + Revision.</p><b style="color:#7b00ff">Explore →</b></a>
+  <a class="card reveal" href="/course/English"><div style="font-size:40px">🇬🇧</div><h3>English</h3><p>Bolna + Likhna + Grammar. Page 1: Grammar, Page 2: Bolna, Page 3: Likhna.</p><b style="color:#7b00ff">Explore →</b></a>
+  <a class="card reveal" href="/course/Coding"><div style="font-size:40px">💻</div><h3>Coding + AI</h3><p>C, C++, Python, Java, HTML, CSS, Website + AI Prompt. Bilkul zero se.</p><b style="color:#7b00ff">Explore →</b></a>
 </div>
+
+<!-- Guest Page jaisa - PFTP wala Course Detail -->
+<div style="max-width:900px;margin:auto;padding:0 15px 30px">
+  <div class="dash-card reveal" style="text-align:center">
+    <h3>🎁 Aaj Ka Offer</h3>
+    <p style="font-size:18px"><b>2 Din FREE Trial</b> + Orphan Ko Discount + 1st Month Me 20% Off</p>
+    <p>Fee Sirf <b style="color:#ff2e88;font-size:22px">Rs. 1000 / Month</b> - JazzCash 03116402301</p>
+    <a href="/payment" style="background:#ff2e88;color:white;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;display:inline-block">💰 Abhi Payment Karo</a>
+    <a href="/discount" style="background:#222;color:white;padding:12px 30px;border-radius:25px;text-decoration:none;font-weight:700;display:inline-block;margin-left:8px">🎓 Discount Lo</a>
+  </div>
+  <div class="dash-card reveal">
+    <h3>👩‍🏫 Kyun Sandhu Academy?</h3>
+    <p>✅ <b>Live Classes</b> - Recorded nahi, roz live teacher se parho<br>
+    ✅ <b>8 Years Experience</b> wali Female Teachers<br>
+    ✅ <b>Small Batches</b> - Har bache pe tawajju<br>
+    ✅ <b>Certificate</b> - Course khatam pe certificate<br>
+    ✅ <b>WhatsApp Support</b> - 03116402301 pe kabhi bhi poocho</p>
+  </div>
+</div>
+<script>setTimeout(()=>{document.querySelectorAll('.reveal').forEach(e=>e.classList.add('show'))},200);</script>
 {% endblock %}

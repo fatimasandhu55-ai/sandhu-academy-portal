@@ -1,7 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page"><h2>Payment - JazzCash</h2>
-<p>JazzCash Number: 0300-XXXXXXX</p>
-<p>Fee bhej kar screenshot yahan upload karein (Step 3 me upload button lagayenge)</p>
+<div style="padding:20px;max-width:600px;margin:auto;background:white;border-radius:20px;box-shadow:0 4px 15px #ddd">
+<h2 style="text-align:center">💰 Payment - Sandhu Academy</h2>
+<p style="text-align:center">Fee jama karwane ke liye neeche diye gaye JazzCash pe bhejo</p>
+
+<div style="background:linear-gradient(135deg,#ff2e88,#8b00ff);color:white;padding:20px;border-radius:20px;text-align:center">
+<h3>JazzCash</h3>
+<h2 style="font-size:32px;margin:5px">Contact the admin before sending.</h2>
+<p><b>Name:</b> Fatima Sandhu</p>
+<p>Account Title: Fatima Sandhu - Sandhu Academy</p>
+<p style="font-size:12px;background:white;color:#333;padding:8px;border-radius:10px">Step: 1. JazzCash App kholo → 2. Is number pe paise bhejo → 3. Neeche Trx ID likh ke Submit karo</p>
+</div>
+
+<br>
+<h3>Payment Submit Karo</h3>
+<form action="/payment" method="POST" enctype="multipart/form-data">
+<input name="student_name" placeholder="Bache Ka Naam" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<input name="phone" placeholder="Tumhara WhatsApp Number" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<select name="course" style="width:100%;padding:12px;margin:5px 0;border-radius:10px">
+<option>Matric - 9th / 10th</option><option>English Course</option><option>Coding Course</option><option>Discount - Orphan</option>
+</select>
+<input name="amount" placeholder="Kitni Amount Bheji? - jaise 1000" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<input name="trxid" placeholder="JazzCash Trx ID / Transaction ID" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<p>Payment Screenshot / Slip Upload Karo:</p>
+<input type="file" name="screenshot" required>
+<br><br>
+<button style="background:green;color:white;padding:14px;width:100%;border:none;border-radius:12px;font-weight:700;font-size:16px">✅ Submit Payment</button>
+</form>
+<p style="font-size:13px;text-align:center">Submit ke baad Admin check karke <b>Approved</b> karegi, tumhe WhatsApp pe pata chal jayega.</p>
+<a href="https://wa.me/923116402301?text=Assalam%20o%20Alaikum%20Maine%20Payment%20Bhej%20Di%20Hai" style="display:block;text-align:center;background:#25D366;color:white;padding:12px;border-radius:12px;text-decoration:none;font-weight:700">📱 WhatsApp Pe Rabta Karo - Admin Se</a>
 </div>
 {% endblock %}

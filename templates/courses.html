@@ -1,8 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page"><h2>Our Courses</h2>
-<p>1. Coding - Rs.1000 / Month</p>
-<p>2. Spoken English - Rs.1000 / Month</p>
-<p>3. Matric / Inter - Rs.1000 / Subject</p>
+<div style="padding:15px;max-width:1100px;margin:auto">
+
+<!-- OOPER PINK PARAGRAPH - BILKUL EASY -->
+<div style="background:#ff2e88;color:white;padding:18px;border-radius:20px;text-align:center">
+<h2 style="margin:0">📚 Hamare Courses - Sandhu Academy</h2>
+<p style="margin:8px 0 0;font-size:15px;line-height:1.6">Hamare paas 3 tarah ke courses hain. Matric, English aur Coding. Sab asaan tareeke se parhate hain. Jo bacha slow hai, usko bhi pyar se samjhate hain. 2 din FREE trial hai. Pehle parh ke dekho, phir admission lo.</p>
+</div>
+
+<!-- TOTAL SUBJECTS + OFFER - EASY WALA -->
+<div style="background:white;padding:15px;border-radius:20px;margin:15px 0;box-shadow:0 2px 10px #ddd">
+<p style="margin:5px 0"><b>🎯 Matric:</b> Physics, Chemistry, Biology, Maths, English, Urdu, Islamiat, Pak Studies</p>
+<p style="margin:5px 0"><b>🎯 English:</b> Bolna, Likhna, Grammar, Interview</p>
+<p style="margin:5px 0"><b>🎯 Coding:</b> C, C++, Python, Java, HTML, CSS, Website Banana, AI Prompt</p>
+<p style="margin:5px 0"><b>🎁 New Bachon Ke Liye Offer:</b> 2 Din FREE Trial | Orphan Ko Discount | 1st Month Me 20% Off</p>
+<a href="/discount" style="background:#ff2e88;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;margin-top:8px">🎁 Offer Lo - Discount Page</a>
+</div>
+
+<!-- PAGES - All + Page 1 se 50 -->
+<div style="background:white;padding:12px;border-radius:15px;margin-bottom:15px;overflow-x:auto;white-space:nowrap;text-align:center">
+<a href="/courses" style="background:#222;color:white;padding:8px 16px;border-radius:20px;text-decoration:none;margin:3px;display:inline-block">All</a>
+{% for p in range(1,51) %}
+<a href="/courses?page={{p}}" style="background:{{'#ff2e88' if request.args.get('page','1')==p|string else 'white'}};color:{{'white' if request.args.get('page','1')==p|string else '#333'}};padding:8px 12px;border-radius:20px;text-decoration:none;margin:3px;display:inline-block;border:1px solid #ddd">Page {{p}}</a>
+{% endfor %}
+</div>
+
+<!-- COURSES - PIC EK TARAF, DETAIL DUSRI TARAF -->
+{% for c in courses %}
+<div style="background:white;border-radius:20px;overflow:hidden;box-shadow:0 4px 15px #ddd;margin-bottom:20px;display:flex;flex-wrap:wrap">
+  <!-- LEFT - PIC VERTICAL -->
+  <div style="flex:1;min-width:280px;max-width:350px">
+  {% if c[7] %}<img src="/static/uploads/{{c[7]}}" style="width:100%;height:100%;min-height:320px;object-fit:cover;display:block">{% else %}<div style="height:320px;background:linear-gradient(180deg,#ff2e88,#8b00ff);display:flex;align-items:center;justify-content:center;color:white;font-size:60px">📚</div>{% endif %}
+  </div>
+
+  <!-- RIGHT - DETAIL + PAGES USKE SAAMNE -->
+  <div style="flex:2;min-width:280px;padding:20px">
+    <span style="background:#fff0f5;color:#ff2e88;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700">{{c[1]}} | Page {{c[8]}}</span>
+    <h2 style="margin:10px 0">{{c[2]}}</h2>
+    <p style="color:#666;font-size:15px;line-height:1.6">{{c[5]}}</p>
+    <p><b>Fee:</b> Rs.{{c[4]}} &nbsp; | &nbsp; <b>Duration:</b> {{c[3]}}</p>
+
+    <!-- IS COURSE KE PAGES - SAMNE HI -->
+    <div style="background:#fff5f8;padding:12px;border-radius:12px;margin:10px 0">
+    <b>📖 Is Course Ke Pages:</b><br>
+    {% if c[1]=='English' %}
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 1: Grammar</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 2: Bolna</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 3: Likhna</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 4: Words</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 5: Interview</span>
+    {% elif c[1]=='Coding' %}
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 1: C / C++</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 2: Python</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 3: HTML / CSS</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 4: Website</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 5: AI Prompt</span>
+    {% else %}
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 1: Science</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 2: Maths</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 3: English</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 4: Urdu</span>
+      <span style="display:inline-block;background:white;padding:6px 12px;border-radius:20px;margin:4px;border:1px solid #ffd0e0">Page 5: Pak Studies</span>
+    {% endif %}
+    </div>
+
+    {% if c[6] %}<a href="{{c[6]}}" target="_blank" style="color:red">🎥 Video Dekho</a><br><br>{% endif %}
+    <a href="/course/{{c[1]}}" style="background:#ff2e88;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;display:inline-block;font-weight:700">Detail Dekho →</a>
+    <a href="https://wa.me/923116402301?text=Mujhe%20{{c[2]}}%20me%20admission%20lena%20hai" style="background:#25D366;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;display:inline-block;font-weight:700;margin-left:8px">WhatsApp Karo</a>
+  </div>
+</div>
+{% else %}
+<p style="text-align:center;background:white;padding:20px;border-radius:15px">Abhi is Page pe koi course nahi. Admin se add karo.</p>
+{% endfor %}
+
 </div>
 {% endblock %}

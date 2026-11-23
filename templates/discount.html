@@ -1,7 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page"><h2>Discount & Rewards 🏆</h2>
-<p>2 Days Free Trial + Special Discount for Early Admission!</p>
-<p>Topper students ko Reward aur Future Internship milegi.</p>
+<div style="padding:20px;max-width:600px;margin:auto;background:white;border-radius:20px;box-shadow:0 4px 15px #ddd">
+<h2 style="text-align:center">💰 Discount - Orphan / Yateem Bachon Ke Liye</h2>
+<p style="text-align:center">Form bharo, Admin verify karke WhatsApp pe batayegi.</p>
+<form id="discountForm" action="/discount" method="POST" onsubmit="return showPopup()">
+<input name="name" placeholder="Bache Ka Naam" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<input name="phone" placeholder="WhatsApp Number" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<select name="course" style="width:100%;padding:12px;margin:5px 0;border-radius:10px"><option>Matric</option><option>English</option><option>Coding</option></select>
+<textarea name="reason" placeholder="Wajah likho - jaise Walid nahi hain / Fee afford nahi kar sakte" style="width:100%;padding:12px;border-radius:10px"></textarea><br><br>
+<button style="background:#ff2e88;color:white;padding:14px;width:100%;border:none;border-radius:12px;font-weight:700;font-size:16px">✅ Submit Application</button>
+</form>
 </div>
+
+<!-- POPUP -->
+<div id="popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center">
+<div style="background:white;padding:30px;border-radius:20px;max-width:400px;text-align:center;margin:100px auto">
+<div style="font-size:50px">✅</div>
+<h3>Application Submit Ho Gayi!</h3>
+<p>Admin will reply you soon.<br>Aapko <b>Verified</b> ka msg WhatsApp pe mil jayega.<br>JazakAllah!</p>
+<button onclick="document.getElementById('popup').style.display='none'" style="background:#ff2e88;color:white;padding:10px 25px;border:none;border-radius:10px;font-weight:700">OK</button>
+</div>
+</div>
+<script>
+function showPopup(){
+  // pehle form submit hone do, phir popup dikhao
+  setTimeout(()=>{document.getElementById('popup').style.display='flex';},500);
+  return true;
+}
+</script>
 {% endblock %}

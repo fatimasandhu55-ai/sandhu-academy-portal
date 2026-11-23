@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding:20px;max-width:1000px;margin:auto">
+<h2 style="text-align:center">🏆 Hamare Bachon Ke Results</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+{% for r in results %}
+<div style="background:white;border-radius:20px;padding:15px;text-align:center;box-shadow:0 4px 12px #ddd">
+{% if r[3] %}<img src="/static/uploads/{{r[3]}}" style="width:100%;height:180px;object-fit:cover;border-radius:15px">{% endif %}
+<h3>{{r[1]}}</h3><p style="font-size:22px;font-weight:700;color:green">{{r[2]}}</p>
+{% if r[4] %}<a href="{{r[4]}}" target="_blank">🎥 Video Dekho</a>{% endif %}
+</div>
+{% else %}<p>Abhi koi result add nahi hua.</p>{% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="page"><h2>Contact Us</h2>
-<p>WhatsApp: 0300-XXXXXXX</p>
-<p>Timing: 4pm - 9pm</p>
-<p>How to Contact: WhatsApp pe "Admission" likh kar bhejein.</p>
+<div style="padding:20px;max-width:600px;margin:auto;background:white;border-radius:20px">
+<h2 style="text-align:center">📩 Contact Karo</h2>
+<p style="text-align:center">Aaj: {{today}}</p>
+<form action="/contact" method="POST" enctype="multipart/form-data">
+<input name="name" placeholder="Tumhara Naam" required style="width:100%;padding:12px;margin:5px 0">
+<textarea name="msg" placeholder="Kya puchna hai? Fee? Admission? Timing?" required style="width:100%;padding:12px"></textarea>
+<p>Screenshot hai to lagao:</p><input type="file" name="screenshot"><br><br>
+<button style="background:#25D366;color:white;padding:14px;width:100%;border:none;border-radius:12px;font-weight:700;font-size:16px">📱 Send to WhatsApp</button>
+</form>
+<p style="text-align:center;font-size:13px">Ye seedha Fatima Sandhu ke WhatsApp 03116402301 pe jayega. AI bhi pehle jawab degi.</p>
 </div>
 {% endblock %}

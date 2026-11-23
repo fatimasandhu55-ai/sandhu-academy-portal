@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding:20px;max-width:1100px;margin:auto">
+<h2 style="text-align:center">Welcome Fatima Sandhu 👑</h2>
+<p style="text-align:center"><b>Sandhu Academy - Admin Panel</b> | <a href="/logout" style="color:red;font-weight:700">🚪 Logout</a> | <a href="https://wa.me/923116402301" style="color:green;font-weight:700">WhatsApp</a></p>
+
+<!-- ⚙️ SETTING - BACKGROUND + AI CHAT -->
+<div style="background:#222;color:white;padding:18px;border-radius:15px;margin-bottom:20px">
+<b style="font-size:18px">⚙️ Setting</b>
+<a href="/ai_chats" style="background:#8b00ff;color:white;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:700;display:block;text-align:center;margin:12px 0">🤖 Bachon Ki AI Chat Dekho - Kisne Kya Poocha</a>
+<p style="font-size:13px;color:#ccc">Pehle pic choose karo, neeche preview dekho, phir Background Lagao dabao. Pic halki si har page ke peeche aayegi.</p>
+<form action="/change_bg" method="POST" enctype="multipart/form-data">
+<input type="file" name="bg" accept="image/*" required style="background:white;border-radius:8px;padding:8px;width:100%" onchange="document.getElementById('bgPreview').src=URL.createObjectURL(this.files[0]); document.getElementById('bgPreviewBox').style.display='block'">
+<div id="bgPreviewBox" style="display:none;margin-top:10px;text-align:center">
+<p style="font-size:13px">👇 Aisi halki si lagegi:</p>
+<img id="bgPreview" style="width:100%;max-height:150px;object-fit:cover;border-radius:10px;opacity:0.35;border:2px solid white">
+</div><br>
+<button style="background:#ff2e88;color:white;border:none;padding:12px 25px;border-radius:10px;font-weight:700;width:100%">🖼️ Background Lagao</button>
+</form>
+<form action="/change_bg_remove" method="POST" style="margin-top:8px"><button style="background:#555;color:white;border:none;padding:8px 15px;border-radius:8px;width:100%">Background Hatayo - Pink Wapis Lao</button></form>
+<p style="font-size:12px;color:#ccc;margin:8px 0 0">Jo pic yahan lagayogi, wo poori website ke background me aa jayegi.</p>
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;box-shadow:0 2px 10px #ddd;margin-bottom:20px">
+<h3>📚 Course Add Karo - Image / Video / Page ke Sath</h3>
+<form action="/add_course" method="POST" enctype="multipart/form-data">
+<select name="category" style="width:100%;padding:10px;margin:5px 0"><option>Matric</option><option>English</option><option>Coding</option></select>
+<input name="title" placeholder="Course Name" required style="width:100%;padding:10px;margin:5px 0">
+<input name="duration" placeholder="Duration - jaise 3 Months" required style="width:100%;padding:10px;margin:5px 0">
+<input name="fee" placeholder="Fee - jaise 1000" required style="width:100%;padding:10px;margin:5px 0">
+<textarea name="detail" placeholder="Detail - C, C++, Python, Java, HTML, CSS, Web Developing, AI Prompt" style="width:100%;padding:10px"></textarea>
+<input name="video_url" placeholder="YouTube Video Link" style="width:100%;padding:10px;margin:5px 0">
+<select name="page_no" style="width:100%;padding:10px;margin:5px 0">{% for p in range(1,51) %}<option value="{{p}}">Page {{p}}</option>{% endfor %}</select>
+<p>Image Upload Karo:</p><input type="file" name="image"><br><br>
+<button style="background:#ff2e88;color:white;padding:12px 25px;border:none;border-radius:10px;font-weight:700">➕ Add Course</button>
+</form>
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>All Courses - Ye Bahar Website Pe Dikh Rahe Hain</h3>
+{% for c in courses %}
+<div style="border:1px solid #eee;padding:10px;border-radius:10px;margin:10px 0;display:flex;gap:10px;align-items:center">
+{% if c[7] %}<img src="/static/uploads/{{c[7]}}" style="width:80px;height:80px;object-fit:cover;border-radius:10px">{% endif %}
+<div style="flex:1"><b>{{c[2]}}</b> - {{c[1]}} | Page {{c[8]}}<br>Fee: {{c[4]}} | {{c[3]}}<br><small>{{c[5]}}</small><br>{% if c[6] %}<a href="{{c[6]}}" target="_blank">🎥 Video Dekho</a>{% endif %}</div>
+<a href="/delete_course/{{c[0]}}" style="color:red">Delete</a>
+</div>
+{% endfor %}
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>👩‍🏫 Teacher Add Karo - Pic + Detail Ke Sath</h3>
+<form action="/add_teacher" method="POST" enctype="multipart/form-data">
+<input name="name" placeholder="Teacher Ka Naam" required style="width:100%;padding:10px;margin:5px 0">
+<input name="subject" placeholder="Subject - English / Maths / Coding" required style="width:100%;padding:10px;margin:5px 0">
+<input name="exp" placeholder="Experience - 8 Years Experience" required style="width:100%;padding:10px;margin:5px 0">
+<textarea name="detail" placeholder="Teacher ki Detail" style="width:100%;padding:10px"></textarea>
+<p>Teacher Ki Pic:</p><input type="file" name="image"><br><br>
+<button style="background:#222;color:white;padding:10px 20px;border:none;border-radius:10px">Add Teacher</button>
+</form>
+{% for t in teachers %}<p>✔ {{t[1]}} - {{t[2]}} ({{t[3]}}) {% if t|length>4 and t[4] %}<img src="/static/uploads/{{t[4]}}" style="width:50px;height:50px;border-radius:50%;object-fit:cover">{% endif %} <a href="/delete_teacher/{{t[0]}}" style="color:red">Delete</a></p>{% endfor %}
+</div>
+
+<div style="background:#fff3cd;padding:20px;border-radius:15px;margin-bottom:20px;border:2px solid #ff2e88">
+<h3>👩‍🏫 Teacher Ka Username / Password Banao</h3>
+<form action="/add_teacher_user" method="POST">
+<input name="name" placeholder="Teacher Ka Naam" required style="width:100%;padding:10px;margin:5px 0">
+<input name="username" placeholder="Username - teacher_ayesha" required style="width:100%;padding:10px;margin:5px 0">
+<input name="password" placeholder="Password - ayesha123" required style="width:100%;padding:10px;margin:5px 0">
+<button style="background:#ff2e88;color:white;padding:12px 25px;border:none;border-radius:10px;font-weight:700">➕ Teacher Login Banao</button>
+</form>
+{% for tu in teacher_users %}<p><b>{{tu[1]}}</b> - User: {{tu[2]}} | Pass: {{tu[3]}} <a href="/delete_student/{{tu[0]}}" style="color:red">Delete</a></p>{% else %}<p>Abhi koi teacher login nahi bana.</p>{% endfor %}
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>🎓 Student Ka Username / Password Banao + Meet Link</h3>
+<form action="/add_student_user" method="POST">
+<input name="name" placeholder="Student Ka Naam" required style="width:100%;padding:10px;margin:5px 0">
+<input name="username" placeholder="Username - ali123" required style="width:100%;padding:10px;margin:5px 0">
+<input name="password" placeholder="Password - ali111" required style="width:100%;padding:10px;margin:5px 0">
+<input name="class" placeholder="Class - 10th Science" style="width:100%;padding:10px;margin:5px 0">
+<input name="fee" placeholder="Fee - Paid / Pending" style="width:100%;padding:10px;margin:5px 0">
+<input name="marks" placeholder="Marks - 850/1100" style="width:100%;padding:10px;margin:5px 0">
+<input name="meet_link" placeholder="Google Meet Link" style="width:100%;padding:10px;margin:5px 0">
+<button style="background:green;color:white;padding:12px 25px;border:none;border-radius:10px;font-weight:700">➕ Student Add Karo</button>
+</form>
+{% for s in students %}<p><b>{{s[1]}}</b> - User: {{s[2]}} | Pass: {{s[3]}} | Class: {{s[5]}} | Marks: {{s[7]}} | Meet: {{s[8]}} {% if s|length>9 and s[9] %}<img src="/static/uploads/{{s[9]}}" style="width:40px;height:40px;border-radius:50%;object-fit:cover">{% endif %} <a href="/delete_student/{{s[0]}}" style="color:red">Delete</a></p>{% endfor %}
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>🏆 Students Results - Image / Video</h3>
+<form action="/add_result" method="POST" enctype="multipart/form-data">
+<input name="student_name" placeholder="Bache Ka Naam" required style="width:100%;padding:10px;margin:5px 0">
+<input name="marks" placeholder="Number - 1050/1100" required style="width:100%;padding:10px;margin:5px 0">
+<input name="video_url" placeholder="Result Video Link" style="width:100%;padding:10px;margin:5px 0">
+<p>Result Ki Image:</p><input type="file" name="image"><br><br>
+<button style="background:orange;color:white;padding:10px 20px;border:none;border-radius:10px">Add Result</button>
+</form>
+{% for r in results %}<p>🏆 {{r[1]}} - {{r[2]}} {% if r[3] %}<img src="/static/uploads/{{r[3]}}" style="width:60px;height:60px;object-fit:cover">{% endif %}</p>{% endfor %}
+</div>
+
+<div style="background:#e8ffe8;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>💰 Payments - JazzCash Wale - Approve / Reject</h3>
+{% for p in payments %}<p><b>{{p[1]}}</b> - {{p[2]}} - {{p[3]}} - Rs.{{p[4]}} - Trx: {{p[5]}} - <b>Status: {{p[7] if p|length>7 else 'Pending'}}</b><br>
+<a href="/approve_payment/{{p[0]}}/Approved" style="background:green;color:white;padding:5px 12px;border-radius:8px;text-decoration:none">✅ Approve</a>
+<a href="/approve_payment/{{p[0]}}/Rejected" style="background:red;color:white;padding:5px 12px;border-radius:8px;text-decoration:none">❌ Reject</a>
+{% if p[6] %}<br><img src="/static/uploads/{{p[6]}}" style="width:100px;border-radius:10px">{% endif %}</p><hr>{% else %}<p>Abhi koi payment nahi aayi.</p>{% endfor %}
+</div>
+
+<div style="background:#fff0f5;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>💰 Discount Applications - Orphan Bachon Ki - Verify / Reject</h3>
+{% for a in apps %}<p><b>{{a[1]}}</b> - {{a[2]}} - {{a[3]}}<br><i>Wajah: {{a[4]}}</i><br><b>Status: {{a[5] if a|length>5 else 'Pending'}}</b><br>
+<a href="/verify_discount/{{a[0]}}/Verified" style="background:green;color:white;padding:5px 12px;border-radius:8px;text-decoration:none">✅ Verified Karo</a>
+<a href="/verify_discount/{{a[0]}}/Rejected" style="background:red;color:white;padding:5px 12px;border-radius:8px;text-decoration:none">❌ Reject Karo</a></p><hr>{% else %}<p>Abhi koi application nahi aayi.</p>{% endfor %}
+</div>
+
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>📩 Contact Messages + Screenshot</h3>
+{% for co in contacts %}<p><b>{{co[1]}}</b> - {{co[2]}} {% if co[3] %}<br><img src="/static/uploads/{{co[3]}}" style="width:100px;border-radius:10px">{% endif %}</p><hr>{% else %}<p>Abhi koi message nahi.</p>{% endfor %}
+</div>
+</div>
+{% endblock %}

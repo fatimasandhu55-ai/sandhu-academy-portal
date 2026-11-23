@@ -3,22 +3,56 @@
 <head>
 <title>Sandhu Academy</title>
 <link rel="stylesheet" href="/static/style.css">
+<style>
+body{margin:0;font-family:Arial}
+nav{background:rgba(139,0,255,0.95);backdrop-filter:blur(10px);color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:1000;box-shadow:0 5px 20px rgba(0,0,0,0.2)}
+nav a{color:white;text-decoration:none;margin:0 10px;font-weight:700;transition:0.3s}
+nav a:hover{color:#ffde59;transform:translateY(-2px)}
+footer{background:#222;color:white;text-align:center;padding:15px;font-size:13px}
+.whatsapp-float{position:fixed;bottom:20px;left:20px;background:#25D366;color:white;padding:14px 18px;border-radius:50px;text-decoration:none;font-weight:700;box-shadow:0 5px 15px rgba(0,0,0,0.3);z-index:9998;animation:floatBtn 3s ease-in-out infinite}
+@keyframes floatBtn{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.ai-btn{background:linear-gradient(135deg,#8b00ff,#ff2e88);color:white;border:none;width:65px;height:65px;border-radius:50%;font-size:22px;font-weight:900;box-shadow:0 4px 15px rgba(0,0,0,0.3);cursor:pointer;animation:floatBtn 3s ease-in-out infinite}
+.ai-quick{background:#f0f0ff;border:1px solid #d9d0ff;color:#5b00ff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;margin:3px}
+</style>
 </head>
 <body>
 <nav>
-  <div class="logo">🎓 Sandhu Academy</div>
-  <div class="menu">
-    <a href="/">Home</a>
-    <a href="/courses">Courses</a>
-    <a href="/teachers">Teachers</a>
-    <a href="/discount">Discount & Rewards</a>
-    <a href="/internship">Internship</a>
-    <a href="/payment">Payment</a>
-    <a href="/contact">Contact Us</a>
-    <a href="/login" class="login-btn">Login</a>
-  </div>
+<div><b>🎓 Sandhu Academy</b></div>
+<div>
+<a href="/">Home</a><a href="/courses">Courses</a><a href="/teachers">Teachers</a><a href="/discount">Discount</a><a href="/payment">💰 Payment</a><a href="/results">Results</a><a href="/contact">Contact</a><a href="/login">Login</a>
+</div>
 </nav>
 {% block content %}{% endblock %}
-<footer>© 2026 Sandhu Academy - Learn With Love | WhatsApp: 0300-XXXXXXX</footer>
+<a class="whatsapp-float" href="https://wa.me/923116402301?text=Assalam%20o%20Alaikum%20Sandhu%20Academy%20me%20admission%20lena%20hai" target="_blank">💬 WhatsApp Karo</a>
+<div style="position:fixed;bottom:90px;right:15px;z-index:9999;text-align:center">
+  <button class="ai-btn" onclick="var b=document.getElementById('aiFull'); b.style.display=b.style.display=='none'?'block':'none'">AI</button>
+  <div style="font-size:11px;font-weight:700;color:#8b00ff;margin-top:3px">Sandhu AI</div>
+  <div id="aiFull" style="display:none;position:absolute;bottom:85px;right:0;width:330px;max-width:92vw;background:white;border-radius:20px;box-shadow:0 5px 25px rgba(0,0,0,0.3);overflow:hidden;text-align:left">
+    <div style="background:#8b00ff;color:white;padding:12px;font-weight:700">AI - Sandhu Academy <span style="float:right;cursor:pointer" onclick="document.getElementById('aiFull').style.display='none'">✖</span></div>
+    <div id="chatbox" style="padding:10px;height:230px;overflow-y:auto;font-size:14px;white-space:pre-wrap"><p>Assalam o Alaikum! 👋 Main <b>Sandhu Academy</b> ki AI hun.
+Fee, Tenses, JazzCash, Dictionary - kuch bhi pucho.</p></div>
+    <div style="padding:8px;border-top:1px solid #eee;text-align:center">
+      <button class="ai-quick" onclick="quickAI('tenses kya hain')">📖 Tenses</button>
+      <button class="ai-quick" onclick="quickAI('jazzcash kaise bhejun')">💰 JazzCash</button>
+      <button class="ai-quick" onclick="quickAI('offer')">🎁 Offer</button>
+      <button class="ai-quick" onclick="quickAI('apple means')">🍎 Dictionary</button>
+    </div>
+    <div style="display:flex;border-top:1px solid #eee"><input id="chatinput" placeholder="Likho..." style="flex:1;padding:12px;border:none;outline:none"><button onclick="sendAI()" style="background:#ff2e88;color:white;border:none;padding:10px 15px;font-weight:700">Send</button></div>
+  </div>
+</div>
+<script>
+function quickAI(t){ document.getElementById('chatinput').value=t; sendAI(); }
+function sendAI(){
+  var m=document.getElementById('chatinput').value; if(!m) return;
+  var box=document.getElementById('chatbox'); box.innerHTML += "<p><b>Tum:</b> "+m+"</p>"; document.getElementById('chatinput').value='';
+  fetch('/ai_chat',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'msg='+encodeURIComponent(m)})
+  .then(r=>r.text()).then(t=>{ t=t.replace(/\n/g,"<br>"); box.innerHTML += "<p style='background:#f0f0ff;padding:8px;border-radius:10px'><b>AI:</b> "+t+"</p>"; box.scrollTop=box.scrollHeight;});
+}
+document.getElementById('chatinput').addEventListener('keypress',function(e){if(e.key==='Enter') sendAI();});
+// Scroll Reveal - Al-Noor jaisi animation
+window.addEventListener('scroll',()=>{document.querySelectorAll('.reveal').forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight-50) el.classList.add('show'); })});
+</script>
+<footer>Gujranwala Ki Sab Se Taraqqi Yafta Academy | Sandhu Academy - Fatima Sandhu | WhatsApp: 03116402301</footer>
+<div style="position:fixed;top:0;left:0;width:100%;height:100%;background-image:url('/static/bg.jpg');background-size:cover;background-position:center;opacity:0.18;pointer-events:none;z-index:9990"></div>
 </body>
 </html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding:20px;max-width:900px;margin:auto">
+<h2 style="text-align:center">Welcome Teacher {{name}} 👩‍🏫</h2>
+<div style="background:white;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>📹 Aaj Ki Class - Meet / Zoom Link Bhejo</h3>
+<form id="teacherForm" action="/teacher_update_link" method="POST" onsubmit="return showTeacherPopup()">
+<input name="class_name" placeholder="Konsi Class? - 10th Maths" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<input name="meet_link" placeholder="Google Meet / Zoom Link" required style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<select name="duration" style="width:100%;padding:12px;margin:5px 0"><option>30 Minutes</option><option>1 Hour</option><option>1.5 Hours</option><option>2 Hours</option></select>
+<input name="time" placeholder="Class Time - 4pm - 5pm" style="width:100%;padding:12px;margin:5px 0;border-radius:10px;border:1px solid #ddd">
+<button style="background:#ff2e88;color:white;padding:14px;width:100%;border:none;border-radius:12px;font-weight:700">Link Bachon Ko Bhejo</button>
+</form>
+</div>
+<div style="background:white;padding:20px;border-radius:15px">
+<h3>🎓 Mere Bachay</h3>
+{% for s in students %}<p><b>{{s[1]}}</b> - Class: {{s[5]}} | Marks: {{s[7]}}</p><hr>{% endfor %}
+</div>
+</div>
+<div id="teacherPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999">
+<div style="background:white;padding:30px;border-radius:20px;max-width:400px;text-align:center;margin:120px auto">
+<div style="font-size:50px">✅</div><h3>Link Bhej Diya Gaya!</h3><p>Bachon ke Dashboard pe ab ye Link aa gaya hai.</p>
+<button onclick="document.getElementById('teacherPopup').style.display='none'" style="background:#ff2e88;color:white;padding:10px 25px;border:none;border-radius:10px">OK</button>
+</div>
+</div>
+<script>function showTeacherPopup(){setTimeout(()=>{document.getElementById('teacherPopup').style.display='block';},600); return true;}</script>
+{% endblock %}

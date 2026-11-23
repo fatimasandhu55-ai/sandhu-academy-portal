@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding:20px;max-width:1000px;margin:auto">
+<h2 style="text-align:center">📚 {{cat}} Courses</h2>
+<p style="text-align:center"><a href="/courses">⬅ Sab Courses Dekho</a> | <a href="/">Home</a></p>
+
+{% if cat == 'English' %}
+<div style="background:#fff0f5;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>🗣️ English - Page 1 se 5 Tak</h3>
+<p><b>Page 1:</b> Basic Grammar + Tenses</p>
+<p><b>Page 2:</b> Spoken English - Daily Bol Chaal</p>
+<p><b>Page 3:</b> English Writing - Essay / Application</p>
+<p><b>Page 4:</b> Vocabulary + Pronunciation</p>
+<p><b>Page 5:</b> Interview + Presentation</p>
+<p>Female Teachers Available Hain - Bachiyan Academy Pe Parh Sakti Hain</p>
+</div>
+{% endif %}
+
+{% if cat == 'Coding' %}
+<div style="background:#eef6ff;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>💻 Coding - Sab Kuch Asaan Tareeke Se</h3>
+<p>✔ C, C++, Python, Java</p>
+<p>✔ HTML, CSS, Web Developing</p>
+<p>✔ How to Write AI Prompt</p>
+<p>✔ Jinko Math Mushkil Lagta Hai Unke Liye Asaan Tareeka</p>
+<p>✔ Online Opportunities Bhi Milengi</p>
+</div>
+{% endif %}
+
+{% if cat == 'Matric' %}
+<div style="background:#f0fff0;padding:20px;border-radius:15px;margin-bottom:20px">
+<h3>📖 Matric - 9th / 10th - Science + Arts</h3>
+<p><b>Science:</b> Physics, Chemistry, Biology, Maths, English</p>
+<p><b>Arts:</b> Urdu, Islamiat, Pak Studies, English, Maths</p>
+<p>Har Subject Rs. 1000 / Month</p>
+</div>
+{% endif %}
+
+<h3>Admin Ne Jo Courses Add Kiye Hain:</h3>
+{% for c in courses %}
+<div style="background:white;padding:15px;border-radius:15px;margin:10px 0;box-shadow:0 2px 8px #ddd">
+{% if c[7] %}<img src="/static/uploads/{{c[7]}}" style="width:100%;max-height:250px;object-fit:cover;border-radius:10px">{% endif %}
+<h3>{{c[2]}} - Page {{c[8]}}</h3>
+<p>Fee: {{c[4]}} | Duration: {{c[3]}}</p>
+<p>{{c[5]}}</p>
+{% if c[6] %}<a href="{{c[6]}}" target="_blank" style="background:red;color:white;padding:8px 15px;border-radius:10px;text-decoration:none">🎥 Video Dekho</a>{% endif %}
+<br><br><a href="https://wa.me/923116402301?text=Mujhe%20{{c[2]}}%20Course%20me%20Admission%20Lena%20Hai" style="background:#25D366;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:700">WhatsApp Pe Admission Lo</a>
+</div>
+{% else %}
+<p style="text-align:center">Abhi is category me Admin ne koi course add nahi kiya. Jald add hoga.</p>
+{% endfor %}
+</div>
+{% endblock %}
